@@ -10,8 +10,10 @@ export default new Vuex.Store({
   },
   mutations: {
     updateFilter(state, filter) {
-      if (!filter.trim().length || /([^0-9а-яА-ЯЁё,\s-'])/.test(filter)) {
+      if (!filter.trim().length) {
         state.filter = '';
+      } else if (/([^0-9а-яА-ЯЁё,\s-'])/.test(filter)) {
+        state.filter = null;
       } else {
         state.filter = filter;
       }

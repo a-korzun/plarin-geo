@@ -10,6 +10,7 @@
         <td class="titles">{{ item.title }}</td>
       </tr>
     </table>
+    <span v-if="filteredItems.length === 0" class="nothing">Соотвествий не найдено</span>
   </div>
 </template>
 
@@ -24,9 +25,11 @@
         return this.$store.state.filter
       },
       filteredItems() {
-        if (this.filter.length === 0) {
+        if (typeof this.filter === 'string' && this.filter.length === 0) {
           return this.data;
-        } 
+        } else if (!this.filter) {
+          return [];
+        }
         const list = this.$store.state.data.map((item) => {
           const filter = this.filter.split(',').map(el => el.trim());
           const res = filter.some(el => {
@@ -74,6 +77,12 @@
   }
   .titles{
     text-align: left;
+  }
+  .nothing {
+    text-align: center;
+    padding: 60px;
+    display: block;
+    font-size: 16px;
   }
   @media all and (max-width: 768px) {
     .ids{

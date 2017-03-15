@@ -60,6 +60,10 @@
     padding: 0;
     margin: 0;
     background-color: #ffffff;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: #020202;
   }
   .app{
     display: block;
