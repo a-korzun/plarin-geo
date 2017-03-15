@@ -33,6 +33,12 @@ body {
   font-family: sans-serif;
   color: #252525;
 }
+.footer{
+  margin-top: 200px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1;
+}
 @media all and (max-width: 768px) {
 .app{
     padding: 10px;
