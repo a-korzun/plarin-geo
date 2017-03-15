@@ -12,7 +12,7 @@
         <td class="ids">{{ item.id }}</td>
       </tr>
     </table>
-    <span v-if="isEmpty" class="nothing">Соответствий не найдено</span>
+    <span v-if="loaded && isEmpty" class="nothing">Соответствий не найдено</span>
   </div>
 </template>
 
@@ -21,6 +21,7 @@
     name: 'List',
     data: function(){
       return {
+        loaded: false,
         isEmpty: false,
       }
     },
@@ -32,16 +33,18 @@
         return this.$store.state.filter
       },
       filteredItems() {
-        if (typeof this.filter === 'string' && this.filter.length === 0) {
+        if (typeof this.filter === 'string' && this.filter.trim().length === 0) {
           this.isEmpty = false;
+          this.loaded = true;
           return this.data;
-        } else if (this.filter === null) {
-          this.isEmpty = true;
-          return [];
         }
 
-        const list = this.$store.state.data.map((item) => {
-          const filter = this.filter.split(',').map(el => el.trim());
+        const filter = this.filter.split(',').map(el => {
+          const element = el.trim();
+          return /([^0-9а-яА-ЯЁё,\s-'])/.test(element) ? null : element;
+        }).filter(e => e);
+
+        const list = this.data.map((item) => {
           const res = filter.some(el => {
             if (item.id === el && Number(el)) {
               return true;
@@ -55,6 +58,7 @@
         }).filter(e => e);
 
         this.isEmpty = !list.length;
+        this.loaded = true;
         return list;
       }
     }
