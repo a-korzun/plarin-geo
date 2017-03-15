@@ -12,13 +12,18 @@
         <td class="ids">{{ item.id }}</td>
       </tr>
     </table>
-    <span v-if="filteredItems.length === 0" class="nothing">Соотвествий не найдено</span>
+    <span v-if="isEmpty" class="nothing">Соотвествий не найдено</span>
   </div>
 </template>
 
 <script>
   export default {
     name: 'List',
+    data: function(){
+      return {
+        isEmpty: false,
+      }
+    },
     computed: {
       data() {
         return this.$store.state.data
@@ -28,10 +33,13 @@
       },
       filteredItems() {
         if (typeof this.filter === 'string' && this.filter.length === 0) {
+          this.isEmpty = false;
           return this.data;
-        } else if (!this.filter) {
+        } else if (this.filter === null) {
+          this.isEmpty = true;
           return [];
         }
+
         const list = this.$store.state.data.map((item) => {
           const filter = this.filter.split(',').map(el => el.trim());
           const res = filter.some(el => {
@@ -46,6 +54,10 @@
           return res ? item : null;
         }).filter(e => e);
 
+        console.log(list);
+        console.log(!list.length);
+
+        this.isEmpty = !list.length;
         return list;
       }
     }
