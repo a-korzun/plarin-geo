@@ -1,10 +1,9 @@
 <template>
   <div class="list">
-    <div v-if="loading === true">loading</div>
     <table class="table">
       <tr>
         <th class="t-head ids">ID</th>
-        <th class="t-head titles">Title</th>
+        <th class="t-head titles">Название региона или города</th>
       </tr>
       <tr v-for="item in filteredItems || data" :key="item.id">
         <td class="ids">{{ item.id }}</td>
@@ -39,18 +38,7 @@
         const list = this.$store.state.data.map((item) => {
           const filter = this.filter.split(',').map(el => el.trim());
           const res = filter.some(el => item.id === el || item.title.toLowerCase().includes(el.toLowerCase()));
-          let newItem = {
-            id: item.id,
-            title: item.title
-          };
-          if (res && item.id.includes('-')) {
-            const params = item.id.split('-');
-            newItem = {
-              id: params[1],
-              title: item.title + ` (${this.$store.state.data.find(el => el.id === params[0]).title})`
-            }
-          }
-          return res ? newItem : null;
+          return res ? item : null;
         }).filter(e => e);
 
         this.loading = false;
@@ -67,7 +55,9 @@
     font-family: sans-serif;
     font-size: 13px;
   }
-  .table th, 
+  .table th {
+    padding: 7px 10px;
+  } 
   .table td {
     padding: 5px 10px;
   }

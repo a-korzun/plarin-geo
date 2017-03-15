@@ -5,10 +5,16 @@
         <input v-model="filter"
           name="q"
           type="text"
-          placeholder="Поиск"
+          placeholder="Введите ID, набор ID через запятую, название региона или города"
           autofocus
           class="search-input"
         >
+        <div class="clear" @click="clear" :class="{ hidden: !filter }">
+          <svg viewPort="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <line x1="1" y1="11" x2="11" y2="1" stroke="black" stroke-width="2"/>
+            <line x1="1" y1="1" x2="11" y2="11" stroke="black" stroke-width="2"/>
+          </svg>
+        </div>  
         <div class="input-tip">Введите ID, набор ID через запятую, название региона или города</div>
       </div>
       <button type="submit" class="search-button">Искать</button>
@@ -26,6 +32,10 @@
       },
       updateFilter: function(data) {
         this.$store.commit('updateFilter', data)
+      },
+      clear: function(){
+        this.filter = '';
+        this.$store.commit('updateFilter', '');
       }
     },
     data: function() {
@@ -36,7 +46,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .search-form{
     padding: 20px 0;
     width: 100%;;
@@ -45,18 +55,55 @@
     display: inline-block;
     vertical-align: top;
     width: calc(100% - 110px);
+    position: relative;
+  }
+  .clear{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 12px;
+    height: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  .clear.hidden{
+    display: none;
+  }
+  .clear svg {
+    display: block;
+    width: 12px;
+    height: 12px;
   }
   .input-tip{
-    width: 100%;
+    display: none;
+    position: absolute;
+    top: calc(-100% - 3px);
+    left: 0;
+    background-color: #CCEEFF;
+    border-radius: 2px;
     display: block;
     font-size: 10px;
-    color: #cccccc;
+    color: #020202;
+    padding: 5px 10px;
     font-style: italic;
     pointer-events: none;
     user-select: none;
-    margin: 2px 0 0 10px;
+    display: none;
+  }
+  .input-tip:after{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 20px;
+    bottom: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    transform: rotate(45deg) translateY(50%);
+    background-color: #CCEEFF;
   }
   .search-input{
+    display: none;
     width: 100%;
     height: 30px;
     padding: 0 10px;
@@ -92,6 +139,32 @@
       width: 100%;
       display: block;
       margin-top: 10px;
+    }
+    .input-tip{
+      display: none;
+    }
+    .search-input:not(:focus) ~ .input-tip{
+      display: none;
+    }
+    .search-input:focus ~ .input-tip{
+      display: block;
+    }
+    .input-tip{
+      display: block;
+    }
+    ::-webkit-input-placeholder { /* WebKit browsers */
+      color: #fff;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+      color: #fff;
+      opacity: 1;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+      color: #fff;
+      opacity: 1;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+      color: #fff;
     }
   }
 </style>

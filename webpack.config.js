@@ -5,6 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {};
 
@@ -82,6 +83,12 @@ if (NODE_ENV === 'development') {
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' })
   );
 
+  config.devServer = {
+    contentBase: path.join(__dirname, 'dist'),
+    watchContentBase: true
+    // hot: true
+  }
+
   config.devtool = 'cheap-source-map';
 }
 
@@ -97,21 +104,29 @@ if (NODE_ENV === 'production') {
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' })
   );
 
+  config.plugins.push(
+    new CopyWebpackPlugin([
+      { from: 'assets', to: 'assets' },
+    ], {
+      copyUnmodified: false,
+    })
+  );
 
-  // config.plugins.push(
-  //     new webpack.optimize.UglifyJsPlugin({
-  //         comments: false,
-  //         compress: {
-  //             dead_code: true, // eslint-disable-line camelcase
-  //             screw_ie8: true, // eslint-disable-line camelcase
-  //             unused: true,
-  //             warnings: false,
-  //         },
-  //         mangle: {
-  //             screw_ie8: true,  // eslint-disable-line camelcase
-  //         },
-  //     })
-  // );
+
+  config.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      comments: false,
+      compress: {
+        dead_code: true, // eslint-disable-line camelcase
+        screw_ie8: true, // eslint-disable-line camelcase
+        unused: true,
+        warnings: false,
+      },
+      mangle: {
+        screw_ie8: true,  // eslint-disable-line camelcase
+      },
+    })
+  );
 }
 
 module.exports = config;

@@ -13,7 +13,7 @@ body {
 }
 .app{
   display: block;
-  margin: 0;
+  margin: 0 auto;
   padding: 20px;
   max-width: 800px;
   width: 100%;
@@ -21,7 +21,7 @@ body {
 .logo{
   display: block;
   max-width: 200px;
-  margin: 20px 0;
+  margin: 20px auto;
 }
 @media all and (max-width: 768px) {
 .app{
@@ -34,7 +34,9 @@ body {
   font-family: sans-serif;
   font-size: 13px;
 }
-.table th, 
+.table th {
+  padding: 7px 10px;
+}
 .table td {
   padding: 5px 10px;
 }
@@ -64,26 +66,46 @@ body {
 }
 }
 
-.search-form{
+.search-form[data-v-7cb41050]{
   padding: 20px 0;
   width: 100%;
 }
-.input-container{
+.input-container[data-v-7cb41050]{
   display: inline-block;
   vertical-align: top;
   width: calc(100% - 110px);
+  position: relative;
 }
-.input-tip{
-  width: 100%;
+.input-tip[data-v-7cb41050]{
+  display: none;
+  position: absolute;
+  top: calc(-100% - 3px);
+  left: 0;
+  background-color: #CCEEFF;
+  border-radius: 2px;
   display: block;
   font-size: 10px;
-  color: #cccccc;
+  color: #020202;
+  padding: 5px 10px;
   font-style: italic;
   pointer-events: none;
   user-select: none;
-  margin: 2px 0 0 10px;
+  display: none;
 }
-.search-input{
+.input-tip[data-v-7cb41050]:after{
+  content: '';
+  display: block;
+  position: absolute;
+  left: 20px;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  transform: rotate(45deg) translateY(50%);
+  background-color: #CCEEFF;
+}
+.search-input[data-v-7cb41050]{
+  display: none;
   width: 100%;
   height: 30px;
   padding: 0 10px;
@@ -96,7 +118,7 @@ body {
   margin: 0;
   vertical-align: top;
 }
-.search-button{
+.search-button[data-v-7cb41050]{
   display: inline-block;
   padding: 0 10px;
   height: 30px;
@@ -110,14 +132,40 @@ body {
   width: 100px;
 }
 @media all and (max-width: 768px) {
-.input-container{
+.input-container[data-v-7cb41050]{
     display: block;
     vertical-align: top;
     width: 100%;
 }
-.search-button{
+.search-button[data-v-7cb41050]{
     width: 100%;
     display: block;
     margin-top: 10px;
+}
+.input-tip[data-v-7cb41050]{
+    display: none;
+}
+.search-input:not(:focus) ~ .input-tip[data-v-7cb41050]{
+    display: none;
+}
+.search-input:focus ~ .input-tip[data-v-7cb41050]{
+    display: block;
+}
+.input-tip[data-v-7cb41050]{
+    display: block;
+}
+[data-v-7cb41050]::-webkit-input-placeholder { /* WebKit browsers */
+    color: #fff;
+}
+[data-v-7cb41050]:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #fff;
+    opacity: 1;
+}
+[data-v-7cb41050]::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #fff;
+    opacity: 1;
+}
+[data-v-7cb41050]:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #fff;
 }
 }

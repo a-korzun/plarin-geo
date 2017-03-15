@@ -3,26 +3,21 @@ import Vue from 'vue';
 
 Vue.use(Vuex);
 
-import data from './data.json';
-
 export default new Vuex.Store({
   state: {
-    data: data.data,
+    data: [],
     filter: ''
   },
   mutations: {
     updateFilter(state, filter) {
-      if (!filter.trim().length) {
+      if (!filter.trim().length || /([^A-Za-z0-9а-яА-ЯЁё])/.test(filter)) {
         state.filter = '';
       } else {
         state.filter = filter;
       }
-    }
-  },
-  actions: {
-    updateList(context) {
-      context.commit('updateFilter');
+    },
+    loadData(state, data) {
+      state.data = data;
     }
   }
-
 });
