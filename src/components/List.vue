@@ -54,9 +54,6 @@
           return res ? item : null;
         }).filter(e => e);
 
-        console.log(list);
-        console.log(!list.length);
-
         this.isEmpty = !list.length;
         return list;
       }
@@ -76,7 +73,7 @@
   .table td {
     padding: 5px 10px;
   }
-  .table tr:nth-child(2n){
+  .table tr:nth-child(2n+1){
     background-color: #fbfbfb;
   }
   .t-head{
@@ -84,6 +81,7 @@
     font-weight: normal;
     color: #020202;
     background-color: #f1f1f1;
+    font-weight: bold;
   }
   .ids{
     text-align: right;

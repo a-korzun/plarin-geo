@@ -49,13 +49,19 @@
 <style scoped>
   .search-form{
     padding: 20px 0;
-    width: 100%;;
+    width: 100%;
+  }
+  .search-form:after{
+    content: '';
+    display: table;
+    clear: both;
   }
   .input-container{
     display: inline-block;
     vertical-align: top;
-    width: calc(100% - 110px);
+    width: calc(100% - 102px);
     position: relative;
+    float: left;
   }
   .clear{
     position: absolute;
@@ -128,17 +134,20 @@
     border-radius: 2px;
     margin: 0;
     width: 100px;
+    float: right;
   }
   @media all and (max-width: 768px) {
     .input-container{
       display: block;
       vertical-align: top;
       width: 100%;
+      float: none;
     }
     .search-button{
       width: 100%;
       display: block;
       margin-top: 10px;
+      float: none;
     }
     .input-tip{
       display: none;
