@@ -65,11 +65,10 @@
   }
   .clear{
     position: absolute;
-    top: 50%;
-    right: 10px;
-    width: 12px;
-    height: 12px;
-    transform: translateY(-50%);
+    top: 0;
+    right: 0;
+    width: 30px;;
+    height: 30px;
     cursor: pointer;
   }
   .clear.hidden{
@@ -77,6 +76,9 @@
   }
   .clear svg {
     display: block;
+    position: absolute;
+    top: 9px;
+    left: 9px;
     width: 12px;
     height: 12px;
   }
