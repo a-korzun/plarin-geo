@@ -23,6 +23,12 @@ body {
   max-width: 200px;
   margin: 20px auto;
 }
+.header{
+  font-size: 24px;
+  text-align: center;
+  font-family: sans-serif;
+  color: #252525;
+}
 @media all and (max-width: 768px) {
 .app{
     padding: 10px;
@@ -75,6 +81,23 @@ body {
   vertical-align: top;
   width: calc(100% - 110px);
   position: relative;
+}
+.clear[data-v-7cb41050]{
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 12px;
+  height: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.clear.hidden[data-v-7cb41050]{
+  display: none;
+}
+.clear svg[data-v-7cb41050] {
+  display: block;
+  width: 12px;
+  height: 12px;
 }
 .input-tip[data-v-7cb41050]{
   display: none;

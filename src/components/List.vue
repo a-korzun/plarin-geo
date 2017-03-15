@@ -5,7 +5,7 @@
         <th class="t-head ids">ID</th>
         <th class="t-head titles">Название региона или города</th>
       </tr>
-      <tr v-for="item in filteredItems || data" :key="item.id">
+      <tr v-for="(item, index) in filteredItems" :key="index">
         <td class="ids">{{ item.id }}</td>
         <td class="titles">{{ item.title }}</td>
       </tr>
@@ -15,12 +15,7 @@
 
 <script>
   export default {
-    name: 'chat',
-    data: function(){
-      return {
-        loading: false
-      }
-    },
+    name: 'List',
     computed: {
       data() {
         return this.$store.state.data
@@ -32,16 +27,19 @@
         if (this.filter.length === 0) {
           return this.data;
         } 
-
-        this.loading = true;
-
         const list = this.$store.state.data.map((item) => {
           const filter = this.filter.split(',').map(el => el.trim());
-          const res = filter.some(el => item.id === el || item.title.toLowerCase().includes(el.toLowerCase()));
+          const res = filter.some(el => {
+            if (item.id === el && Number(el)) {
+              return true;
+            } else if (item.title.toLowerCase().includes(el.toLowerCase()) && !Number(el)) {
+              return true;
+            } else {
+              return false;
+            }
+          });
           return res ? item : null;
         }).filter(e => e);
-
-        this.loading = false;
 
         return list;
       }

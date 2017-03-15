@@ -1,6 +1,7 @@
 <template>
   <div class="app">
     <img v-bind:src="'assets/plarin.png'" alt="Plarin" class="logo">
+    <h1 class="header">myTarget {{geo}}</h1>
     <Search></Search>
     <List></List>
   </div>
@@ -15,6 +16,11 @@
     components: {
       List,
       Search
+    },
+    data: function(){
+      return {
+        geo: '{{geo}}'
+      }
     },
     beforeMount(){
       axios.get('./assets/data.json')
@@ -35,7 +41,7 @@
             return newItem;
           });
 
-          this.$store.commit('loadData', res.data.data);
+          this.$store.commit('loadData', list);
         })
         .catch((err) => {});
     }
@@ -66,6 +72,12 @@
     display: block;
     max-width: 200px;
     margin: 20px auto;
+  }
+  .header{
+    font-size: 24px;
+    text-align: center;
+    font-family: sans-serif;
+    color: #252525;
   }
   @media all and (max-width: 768px) {
     .app{

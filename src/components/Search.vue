@@ -24,7 +24,7 @@
 
 <script>
   export default {
-    name: 'msgform',
+    name: 'Search',
     methods: {
       submit: function(event) {
         event.preventDefault();
