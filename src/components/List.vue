@@ -12,7 +12,7 @@
         <td class="ids">{{ item.id }}</td>
       </tr>
     </table>
-    <span v-if="isEmpty" class="nothing">Соотвествий не найдено</span>
+    <span v-if="isEmpty" class="nothing">Соответствий не найдено</span>
   </div>
 </template>
 
