@@ -50,7 +50,7 @@ body {
 .table td {
   padding: 5px 10px;
 }
-.table tr:nth-child(2n){
+.table tr:nth-child(2n+1){
   background-color: #fbfbfb;
 }
 .t-head{
@@ -58,6 +58,7 @@ body {
   font-weight: normal;
   color: #020202;
   background-color: #f1f1f1;
+  font-weight: bold;
 }
 .ids{
   text-align: right;
@@ -86,11 +87,17 @@ body {
   padding: 20px 0;
   width: 100%;
 }
+.search-form[data-v-7cb41050]:after{
+  content: '';
+  display: table;
+  clear: both;
+}
 .input-container[data-v-7cb41050]{
   display: inline-block;
   vertical-align: top;
-  width: calc(100% - 110px);
+  width: calc(100% - 102px);
   position: relative;
+  float: left;
 }
 .clear[data-v-7cb41050]{
   position: absolute;
@@ -163,17 +170,20 @@ body {
   border-radius: 2px;
   margin: 0;
   width: 100px;
+  float: right;
 }
 @media all and (max-width: 768px) {
 .input-container[data-v-7cb41050]{
     display: block;
     vertical-align: top;
     width: 100%;
+    float: none;
 }
 .search-button[data-v-7cb41050]{
     width: 100%;
     display: block;
     margin-top: 10px;
+    float: none;
 }
 .input-tip[data-v-7cb41050]{
     display: none;
