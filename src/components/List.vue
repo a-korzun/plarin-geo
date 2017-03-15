@@ -2,12 +2,14 @@
   <div class="list">
     <table class="table">
       <tr>
-        <th class="t-head ids">ID</th>
+        
         <th class="t-head titles">Название региона или города</th>
+        <th class="t-head ids">ID</th>
       </tr>
       <tr v-for="(item, index) in filteredItems" :key="index">
-        <td class="ids">{{ item.id }}</td>
+        
         <td class="titles">{{ item.title }}</td>
+        <td class="ids">{{ item.id }}</td>
       </tr>
     </table>
     <span v-if="filteredItems.length === 0" class="nothing">Соотвествий не найдено</span>
