@@ -7,7 +7,7 @@
     <footer class="footer">
       <p>© Plarin LLC, 2017 г. Все права защищены.</p>
 
-      <p>При использовании материалов указание источника Plarin и гиперссылка на <a href="https://www.plarin.net/">https://www.plarin.net/</a> обязательны</p></footer>
+      <p>При использовании материалов указание источника Plarin и гиперссылка на <a href="https://www.plarin.net/">https://www.plarin.net/</a> обязательны.</p></footer>
   </div>
 </template>
 
